@@ -1,0 +1,12 @@
+version: '3'
+services:
+  space:
+    build: .
+    ports:
+     - "8766:8766"
+     - "27016:27016"
+    volumes:
+     - ./space:/mnt/root/space-engineers-server
+    environment:
+     - SERVER_NAME=DefaultSavePath
+    tty: true
