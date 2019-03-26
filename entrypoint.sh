@@ -22,9 +22,9 @@ if [ ! -d ${CONFIG}/Updater ]; then
 	mkdir -p ${CONFIG}/Updater
 fi
 
-if [ ! -d ${CONFIG}/Saves/"$SERVER_NAME" ]; then
-	# Setup folder for default save
-	mkdir -p ${CONFIG}/Saves/"$SERVER_NAME"
+if [ ${WORK}/${SERVER_NAME}]; then
+	# Copy save to save location
+	cp -r ${WORK}/${SERVER_NAME} ${CONFIG}/Saves/
 fi
 
 ls -la ${CONFIG}

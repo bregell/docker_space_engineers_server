@@ -18,4 +18,3 @@ WORKDIR ${WORK}
 ENTRYPOINT ["/entrypoint.sh"]
 
 VOLUME ${WORK}
-#VOLUME ${CONFIG}
