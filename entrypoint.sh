@@ -42,4 +42,4 @@ fi
 
 /home/root/steamcmd/steamcmd.sh +login anonymous +force_install_dir ${WORK} +app_update 298740 +quit
 cd ${WORK}/DedicatedServer64
-wine64 SpaceEngineersDedicated.exe -console -ignorelastsession -path Z:\\mnt\\root\\space-engineers-server\\config
+wine64 SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\mnt\\root\\space-engineers-server\\config
