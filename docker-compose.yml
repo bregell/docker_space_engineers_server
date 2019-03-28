@@ -3,10 +3,9 @@ services:
   space:
     build: .
     ports:
-     - "8766:8766"
-     - "27016:27016"
+     - "8766:8766/udp"
+     - "27016:27016/udp"
     volumes:
      - ./space:/mnt/root/space-engineers-server
     environment:
      - SERVER_NAME=DefaultSavePath
-    tty: true
