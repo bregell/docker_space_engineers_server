@@ -39,7 +39,9 @@ if [ ! -f ${CONFIG}/SpaceEngineers-Dedicated.cfg ]; then
 fi
 
 # Change save path to value from config
-sed -i 's/DefaultSavePath/'${SERVER_NAME}'/g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<ServerName>.*</ServerName>=<ServerName>'${SERVER_NAME}'</ServerName>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<WorldName>.*</WorldName>=<WorldName>'${SERVER_NAME}'</WorldName>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<LoadWorld>.*</LoadWorld>=<LoadWorld>Z:\\mnt\\root\\space-engineers-server\\config\\Saves\\'${SERVER_NAME}'</LoadWorld>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
 
 /home/root/steamcmd/steamcmd.sh +login anonymous +force_install_dir ${WORK} +app_update 298740 +quit
 cd ${WORK}/DedicatedServer64
