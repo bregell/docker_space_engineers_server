@@ -27,10 +27,10 @@ if [ ! -d ${CONFIG}/Updater ]; then
 	mkdir -p ${CONFIG}/Updater
 fi
 
-if [ -d ${WORK}/${SERVER_NAME} ]; then
+if [ -d ${WORK}/${WORLD_NAME} ]; then
 	# Copy save to save location
-	cp -r ${WORK}/${SERVER_NAME} ${CONFIG}/Saves/
-	chown -R root:root ${CONFIG}/Saves/${SERVER_NAME}
+	cp -r ${WORK}/${WORLD_NAME} ${CONFIG}/Saves/
+	chown -R root:root ${CONFIG}/Saves/${WORLD_NAME}
 fi
 
 if [ ! -f ${CONFIG}/SpaceEngineers-Dedicated.cfg ]; then
@@ -38,10 +38,14 @@ if [ ! -f ${CONFIG}/SpaceEngineers-Dedicated.cfg ]; then
 	cp /home/root/SpaceEngineers-Dedicated.cfg ${CONFIG}
 fi
 
+# Change ports
+sed -i 's=<SteamPort>.*</SteamPort>=<SteamPort>'${STEAM_PORT}'</SteamPort>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<ServerPort>.*</ServerPort>=<ServerPort>'${SERVER_PORT}'</ServerPort>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+
 # Change save path to value from config
 sed -i 's=<ServerName>.*</ServerName>=<ServerName>'${SERVER_NAME}'</ServerName>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
-sed -i 's=<WorldName>.*</WorldName>=<WorldName>'${SERVER_NAME}'</WorldName>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
-sed -i 's=<LoadWorld>.*</LoadWorld>=<LoadWorld>Z:\\mnt\\root\\space-engineers-server\\config\\Saves\\'${SERVER_NAME}'</LoadWorld>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<WorldName>.*</WorldName>=<WorldName>'${WORLD_NAME}'</WorldName>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
+sed -i 's=<LoadWorld>.*</LoadWorld>=<LoadWorld>Z:\\mnt\\root\\space-engineers-server\\config\\Saves\\'${WORLD_NAME}'</LoadWorld>=g' ${CONFIG}/SpaceEngineers-Dedicated.cfg
 
 /home/root/steamcmd/steamcmd.sh +login anonymous +force_install_dir ${WORK} +app_update 298740 +quit
 cd ${WORK}/DedicatedServer64

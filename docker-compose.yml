@@ -8,4 +8,7 @@ services:
     volumes:
      - ./space:/mnt/root/space-engineers-server
     environment:
-     - SERVER_NAME=DefaultSavePath
+     - SERVER_NAME=DockerDedicated
+     - WORLD_NAME=DockerWorld
+     - STEAM_PORT=8766
+     - SERVER_PORT=27016
